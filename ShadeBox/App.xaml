@@ -1,0 +1,21 @@
+﻿<Application
+    x:Class="ShadeBox.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ShadeBox"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources RequestedTheme="Dark" />
+                <ui:XamlControlsResources />
+                <ResourceDictionary Source="Assets\Icons.xaml" />
+                <ResourceDictionary Source="Styles/MovieCardStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Your other resources here (if exists)  -->
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

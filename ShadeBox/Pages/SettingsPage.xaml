@@ -1,0 +1,94 @@
+﻿<ui:Page
+    x:Class="ShadeBox.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="Ayarlar Sayfası"
+    d:DesignHeight="500"
+    d:DesignWidth="1000"
+    FontFamily="Segoe UI"
+    mc:Ignorable="d">
+
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True">
+        <StackPanel Margin="20">
+            <TextBlock
+                Margin="0,0,0,10"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="Oynatıcı Ayarları" />
+
+            <ui:ToggleSwitch
+                x:Name="ToggleSavePosition"
+                OffContent="Çıkışta Kaldığı Yerden Devam Et"
+                OnContent="Çıkışta Kaldığı Yerden Devam Et"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleHardwareAcceleration"
+                OffContent="Donanım Hızlandırmayı Aç"
+                OnContent="Donanım Hızlandırmayı Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleSubtitles"
+                OffContent="Alt Yazıyı Aç"
+                OnContent="Alt Yazıyı Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleRememberVolume"
+                OffContent="Ses Seviyesini Hatırla"
+                OnContent="Ses Seviyesini Hatırla"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleLowLatency"
+                OffContent="Düşük Gecikmeli Modu Aç"
+                OnContent="Düşük Gecikmeli Modu Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleAutoFullscreen"
+                OffContent="Tam Ekrana Otomatik Geçiş"
+                OnContent="Tam Ekrana Otomatik Geçiş"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleAutoExit"
+                OffContent="Video Bitince Oynatıcıyı Kapat"
+                OnContent="Video Bitince Oynatıcıyı Kapat"
+                Toggled="ToggleSwitch_Toggled" />
+
+            <!--  Yeni Eklenen Ayarlar  -->
+            <ui:ToggleSwitch
+                x:Name="ToggleSubtitleShadow"
+                OffContent="Altyazı Gölgelendirmeyi Aç"
+                OnContent="Altyazı Gölgelendirmeyi Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleSmoothMotion"
+                OffContent="Daha Akıcı Geçişleri Aç"
+                OnContent="Daha Akıcı Geçişleri Aç"
+                Toggled="ToggleSwitch_Toggled" />
+
+            <ui:ToggleSwitch
+                x:Name="ToggleBassBoost"
+                OffContent="Bas Güçlendirmeyi Aç"
+                OnContent="Bas Güçlendirmeyi Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="TogglePowerSave"
+                OffContent="Güç Tasarrufu Modunu Aç"
+                OnContent="Güç Tasarrufu Modunu Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleLoop"
+                OffContent="Sürekli Döngüyü Aç"
+                OnContent="Sürekli Döngüyü Aç"
+                Toggled="ToggleSwitch_Toggled" />
+            <ui:ToggleSwitch
+                x:Name="ToggleBestQuality"
+                OffContent="En İyi Video Kalitesini Seç"
+                OnContent="En İyi Video Kalitesini Seç"
+                Toggled="ToggleSwitch_Toggled" />
+
+        </StackPanel>
+    </ui:ScrollViewerEx>
+</ui:Page>

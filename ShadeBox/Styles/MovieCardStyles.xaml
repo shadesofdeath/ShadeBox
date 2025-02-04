@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Film Kartı Stil Template'i  -->
+    <DataTemplate x:Key="MovieCardTemplate">
+        <Border
+            Margin="8"
+            BorderThickness="0"
+            CornerRadius="8"
+            Effect="{DynamicResource StandardShadow}">
+            <Border.Resources>
+                <Storyboard x:Key="HoverAnimation">
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                        To="1.05"
+                        Duration="0:0:0.2" />
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                        To="1.05"
+                        Duration="0:0:0.2" />
+                </Storyboard>
+                <Storyboard x:Key="LeaveAnimation">
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                        To="1"
+                        Duration="0:0:0.2" />
+                    <DoubleAnimation
+                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                        To="1"
+                        Duration="0:0:0.2" />
+                </Storyboard>
+            </Border.Resources>
+            <Border.RenderTransform>
+                <ScaleTransform />
+            </Border.RenderTransform>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Film Posteri  -->
+                <Border
+                    Grid.Row="0"
+                    ClipToBounds="True"
+                    CornerRadius="8,8,0,0">
+                    <Image
+                        Width="130"
+                        Height="180"
+                        Source="{Binding PosterPath}"
+                        Stretch="Fill" />
+                </Border>
+
+                <!--  Film Bilgileri  -->
+                <StackPanel Grid.Row="1" Margin="12,8,12,12">
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="Yellow"
+                        Text="{Binding Title}"
+                        TextWrapping="Wrap" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="{Binding Year}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="8,0,0,0"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="{Binding Rating}" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+</ResourceDictionary>

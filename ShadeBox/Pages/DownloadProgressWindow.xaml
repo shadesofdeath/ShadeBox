@@ -1,0 +1,61 @@
+﻿<Window
+    x:Class="ShadeBox.Pages.DownloadProgressWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="İndirme İlerlemesi"
+    Width="400"
+    Height="230"
+    ui:TitleBar.MaximizeButtonAvailability="Collapsed"
+    ui:WindowHelper.FixMaximizedWindow="True"
+    ui:WindowHelper.UseModernWindowStyle="True"
+    BorderThickness="0"
+    WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="FileNameBlock"
+            Margin="0,0,0,10"
+            Text="Dosya indiriliyor..." />
+
+        <ui:ProgressBar
+            x:Name="DownloadProgress"
+            Grid.Row="1"
+            Height="4"
+            Margin="0,0,0,10" />
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,0,0,10"
+            Orientation="Horizontal">
+            <TextBlock
+                x:Name="ProgressText"
+                Margin="0,0,10,0"
+                Text="0%" />
+            <TextBlock x:Name="SpeedText" Text="0 MB/s" />
+            <TextBlock Margin="5,0" Text=" - " />
+            <TextBlock x:Name="RemainingTimeText" Text="--:--" />
+        </StackPanel>
+
+        <TextBlock
+            x:Name="StatusText"
+            Grid.Row="3"
+            Margin="0,0,0,10"
+            Text="" />
+
+        <Button
+            x:Name="CancelButton"
+            Grid.Row="4"
+            Width="100"
+            HorizontalAlignment="Right"
+            Click="CancelButton_Click"
+            Content="İptal" />
+    </Grid>
+</Window>
