@@ -41,6 +41,16 @@ jobs:
           $version = Get-Date -Format "yyyy.MM.dd-HH:mm:ss"
           echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
+      - name: 🔥 Mevcut "latest" Release'i Sil
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          $release = gh release view latest --json id --jq '.id' 2>$null
+          if ($release) {
+            gh release delete latest --yes
+          }
+        shell: pwsh
+
       - name: 🚀 GitHub Releases'a Yükle
         uses: softprops/action-gh-release@v2.2.1
         env:
