@@ -9,6 +9,8 @@ on:
   push:
     branches:
       - main          # Ana branch'e push yapıldığında çalışır.
+    paths-ignore:
+      - "**/*.md"
 
 jobs:
   build:
