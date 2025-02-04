@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\PROJELER\\ShadeBox\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|d:\\projeler\\shadebox\\shadebox\\pages\\seriesdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|solutionrelative:shadebox\\pages\\seriesdetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|d:\\projeler\\shadebox\\shadebox\\pages\\animedetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|solutionrelative:shadebox\\pages\\animedetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|d:\\projeler\\shadebox\\shadebox\\pages\\moviedetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93AB6FBD-29A1-4C7A-8714-3529DAF03890}|ShadeBox\\ShadeBox.csproj|solutionrelative:shadebox\\pages\\moviedetailswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,50 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SeriesDetailsWindow.xaml.cs",
-              "DocumentMoniker": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\SeriesDetailsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ShadeBox\\Pages\\SeriesDetailsWindow.xaml.cs",
-              "ToolTip": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\SeriesDetailsWindow.xaml.cs",
-              "RelativeToolTip": "ShadeBox\\Pages\\SeriesDetailsWindow.xaml.cs",
-              "ViewState": "AgIAAAgBAAAAAAAAAAAawBMBAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T17:47:12.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MovieDetailsWindow.xaml.cs",
-              "DocumentMoniker": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\MovieDetailsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ShadeBox\\Pages\\MovieDetailsWindow.xaml.cs",
-              "ToolTip": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\MovieDetailsWindow.xaml.cs",
-              "RelativeToolTip": "ShadeBox\\Pages\\MovieDetailsWindow.xaml.cs",
-              "ViewState": "AgIAANgAAAAAAAAAAAAawOMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T17:39:25.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AnimeDetailsWindow.xaml.cs",
-              "DocumentMoniker": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\AnimeDetailsWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ShadeBox\\Pages\\AnimeDetailsWindow.xaml.cs",
-              "ToolTip": "D:\\PROJELER\\ShadeBox\\ShadeBox\\Pages\\AnimeDetailsWindow.xaml.cs",
-              "RelativeToolTip": "ShadeBox\\Pages\\AnimeDetailsWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T17:39:02.553Z",
-              "EditorCaption": ""
             }
           ]
         }
