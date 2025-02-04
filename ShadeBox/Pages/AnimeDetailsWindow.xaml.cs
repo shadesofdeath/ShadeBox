@@ -1,10 +1,15 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
 using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
@@ -264,7 +269,7 @@ namespace ShadeBox.Pages
                 //Mediafire kontrolü ve link çekme
                 videoLink = await AnimeMediafireExtractor.GetMediafireDownloadLink(videoLink);
 
-                string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpvnet.exe");
+                string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpv.exe");
                 if (!File.Exists(mpvPath))
                 {
                     MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
