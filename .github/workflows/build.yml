@@ -1,0 +1,63 @@
+name: .NET Release
+
+on:
+  push:
+    branches:
+      - main  # Ana branch'e push yapıldığında çalışır.
+  workflow_dispatch:  # Manuel olarak çalıştırabilmek için.
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: 🚀 Repository’yi Kopyala
+        uses: actions/checkout@v3
+
+      - name: 🛠️ .NET SDK’yı Kur
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+
+      - name: 📦 Bağımlılıkları Yükle
+        run: dotnet restore
+
+      - name: 🔨 Projeyi Derle
+        run: dotnet build --configuration Release --no-restore
+
+      - name: 📦 Yayınlanabilir Dosyaları Oluştur
+        run: dotnet publish -c Release -r win-x64 --self-contained true -o publish
+
+      - name: 📂 "mpv" Klasörünü Oluştur
+        run: mkdir publish\mpv
+
+      - name: 🌍 mpv.net Portable Sürümünü İndir
+        run: |
+          $url = "https://api.github.com/repos/mpvnet-player/mpv.net/releases/latest"
+          $latest = Invoke-RestMethod -Uri $url
+          $downloadUrl = ($latest.assets | Where-Object { $_.name -match "portable.*zip" }).browser_download_url
+          Invoke-WebRequest -Uri $downloadUrl -OutFile mpv.zip
+
+      - name: 📂 mpv.net ZIP İçeriğini Çıkar
+        run: Expand-Archive -Path mpv.zip -DestinationPath publish\mpv
+
+      - name: 🗜️ Derleme ve "mpv" Klasörünü 7z ile Arşivle
+        run: |
+          choco install -y 7zip  # 7-Zip'i yükle
+          7z a release.7z publish\*
+
+      - name: 🏷️ Versiyon Numarası Al
+        id: version
+        run: echo "VERSION=$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
+
+      - name: 🚀 GitHub Releases'a Yükle
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: "Sürüm ${{ env.VERSION }}"
+          body: "Otomatik oluşturulan sürüm."
+          draft: false
+          prerelease: false
+          files: release.7z
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
