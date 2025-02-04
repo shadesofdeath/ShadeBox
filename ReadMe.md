@@ -7,6 +7,8 @@
 
 *Dizi, film ve anime izleyebileceğiniz açık kaynak kodlu masaüstü uygulaması..*
 
+[![SS](https://github.com/shadesofdeath/ShadeBox/raw/main/.github/images/SS.jpg?raw=True)](https://github.com/shadesofdeath/ShadeBox/releases/tag/latest)
+
 [![ForTheBadge made-with-csharp](https://ForTheBadge.com/images/badges/made-with-c-sharp.svg)](https://learn.microsoft.com/dotnet/csharp/)
 [![ForTheBadge built-with-love](https://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/ShadeBox/)
 
