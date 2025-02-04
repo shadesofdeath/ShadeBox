@@ -45,15 +45,27 @@ jobs:
           $version = $TurkeyTime.ToString("yyyy.MM.dd-HH:mm:ss")
           echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
-      - name: 🔥 Mevcut "latest" Release'i Sil
+      - name: 🔥 Mevcut "latest" Release ve Tag'i Sil
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          REPO: ${{ github.repository }}
         run: |
-          $release = gh release view latest --json id --jq '.id' 2>$null
-          if ($release) {
-            gh release delete latest --yes
-          }
-        shell: pwsh
+          # Release ID'yi al
+          RELEASE_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/releases/tags/latest" | jq -r .id)
+
+          # Eğer Release ID varsa, önce release'i sonra tag'i sil
+          if [[ "$RELEASE_ID" != "null" ]]; then
+            echo "Mevcut release ($RELEASE_ID) siliniyor..."
+            curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+              "https://api.github.com/repos/$REPO/releases/$RELEASE_ID"
+
+            echo "Tag 'latest' siliniyor..."
+            git push --delete origin latest || true
+          else
+            echo "Mevcut release bulunamadı, devam ediliyor..."
+          fi
+        shell: bash
 
       - name: 🚀 Güncel Sürümü GitHub Releases'a Yükle
         uses: softprops/action-gh-release@v2.2.1
