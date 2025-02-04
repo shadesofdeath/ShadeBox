@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
+using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -226,7 +227,8 @@ namespace ShadeBox.Pages
                     return;
                 }
 
-                string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpvnet.exe");
+                string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
                 if (!File.Exists(mpvPath))
                 {
                     MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
