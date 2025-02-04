@@ -1,4 +1,4 @@
-name: .NET Release 
+name: .NET Release
 
 on:
   push:
@@ -25,24 +25,11 @@ jobs:
       - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
 
-      - name: 📂 "mpv" Klasörünü Oluştur
-        run: mkdir publish\mpv
-
-      - name: 🌍 mpv.net Portable Sürümünü İndir
-        run: |
-          $url = "https://api.github.com/repos/mpvnet-player/mpv.net/releases/latest"
-          $latest = Invoke-RestMethod -Uri $url
-          $downloadUrl = ($latest.assets | Where-Object { $_.name -match "portable.*zip" }).browser_download_url
-          Invoke-WebRequest -Uri $downloadUrl -OutFile mpv.zip
-
-      - name: 📂 mpv.net ZIP İçeriğini Çıkar
-        run: Expand-Archive -Path mpv.zip -DestinationPath publish\mpv
-
-      - name: 🗜️ "ShadeBox.exe" ve "mpv" Klasörünü 7z ile Arşivle
+      - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile Arşivle
         run: |
           choco install -y 7zip  # 7-Zip'i yükle
           cd publish
-          7z a ../ShadeBox.7z ShadeBox.exe mpv
+          7z a ../ShadeBox.7z ShadeBox.exe
 
       - name: 🏷️ Versiyon Numarası Al
         id: version
