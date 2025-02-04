@@ -226,7 +226,7 @@ namespace ShadeBox.Pages
                     return;
                 }
 
-                string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpv.exe");
+                string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpvnet.exe");
                 if (!File.Exists(mpvPath))
                 {
                     MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
