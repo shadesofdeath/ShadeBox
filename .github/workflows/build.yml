@@ -1,10 +1,14 @@
 name: .NET Release
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
+  workflow_dispatch:  # Manuel olarak çalıştırabilmek için.
   push:
     branches:
-      - main  # Ana branch'e push yapıldığında çalışır.
-  workflow_dispatch:  # Manuel olarak çalıştırabilmek için.
+      - main          # Ana branch'e push yapıldığında çalışır.
 
 jobs:
   build:
@@ -12,10 +16,10 @@ jobs:
 
     steps:
       - name: 🚀 Repository’yi Kopyala
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
 
       - name: 🛠️ .NET SDK’yı Kur
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4.3.0
         with:
           dotnet-version: 9.0.x
 
@@ -27,22 +31,24 @@ jobs:
 
       - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile Arşivle
         run: |
-          choco install -y 7zip  # 7-Zip'i yükle
           cd publish
           7z a ../ShadeBox.7z ShadeBox.exe
 
-      - name: 🏷️ Versiyon Numarası Al
+      - name: 🏷️ Versiyon Numarası Al (Windows PowerShell ile)
         id: version
-        run: echo "VERSION=$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
+        shell: pwsh
+        run: |
+          $version = Get-Date -Format "yyyy.MM.dd-HHmmss"
+          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
       - name: 🚀 GitHub Releases'a Yükle
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
-          tag_name: v${{ env.VERSION }}
+          tag_name: latest
           name: "Sürüm ${{ env.VERSION }}"
-          body: "Otomatik oluşturulan sürüm."
+          body: "${{ github.sha }} için otomatik oluşturulan sürüm."
           draft: false
           prerelease: false
           files: ShadeBox.7z
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
