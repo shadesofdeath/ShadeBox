@@ -2,7 +2,6 @@
 
 [![Boyut](https://img.shields.io/github/repo-size/shadesofdeath/ShadeBox?logo=git&logoColor=white&label=Boyut)](#)
 [![Görüntülenme](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/shadesofdeath/ShadeBox&title=Görüntülenme)](#)
-
 [![Build](https://github.com/shadesofdeath/ShadeBox/actions/workflows/build.yml/badge.svg)](https://github.com/shadesofdeath/KekikStream/actions/workflows/build.yml)
 
 *Dizi, film ve anime izleyebileceğiniz açık kaynak kodlu masaüstü uygulaması..*
