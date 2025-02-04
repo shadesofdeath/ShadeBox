@@ -38,7 +38,7 @@ jobs:
         id: version
         shell: pwsh
         run: |
-          $version = Get-Date -Format "yyyy.MM.dd-HHmmss"
+          $version = Get-Date -Format "yyyy.MM.dd-HH:mm:ss"
           echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
       - name: 🚀 GitHub Releases'a Yükle
@@ -47,8 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
           tag_name: latest
-          name: "Sürüm ${{ env.VERSION }}"
-          body: "${{ github.sha }} için otomatik oluşturulan sürüm."
+          name: "Güncel Sürüm"
+          body: "${{ env.VERSION }} - ${{ github.sha }} için otomatik oluşturulan sürüm."
           draft: false
           prerelease: false
           files: ShadeBox.7z
