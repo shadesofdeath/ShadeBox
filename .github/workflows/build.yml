@@ -1,4 +1,4 @@
-name: .NET Release
+name: .NET Release 
 
 on:
   push:
@@ -22,11 +22,8 @@ jobs:
       - name: 📦 Bağımlılıkları Yükle
         run: dotnet restore
 
-      - name: 🔨 Projeyi Derle
-        run: dotnet build --configuration Release --no-restore
-
-      - name: 📦 Yayınlanabilir Dosyaları Oluştur
-        run: dotnet publish -c Release -r win-x64 --self-contained true -o publish
+      - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
+        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
 
       - name: 📂 "mpv" Klasörünü Oluştur
         run: mkdir publish\mpv
@@ -41,10 +38,11 @@ jobs:
       - name: 📂 mpv.net ZIP İçeriğini Çıkar
         run: Expand-Archive -Path mpv.zip -DestinationPath publish\mpv
 
-      - name: 🗜️ Derleme ve "mpv" Klasörünü 7z ile Arşivle
+      - name: 🗜️ "ShadeBox.exe" ve "mpv" Klasörünü 7z ile Arşivle
         run: |
           choco install -y 7zip  # 7-Zip'i yükle
-          7z a release.7z publish\*
+          cd publish
+          7z a ../ShadeBox.7z ShadeBox.exe mpv
 
       - name: 🏷️ Versiyon Numarası Al
         id: version
@@ -58,6 +56,6 @@ jobs:
           body: "Otomatik oluşturulan sürüm."
           draft: false
           prerelease: false
-          files: release.7z
+          files: ShadeBox.7z
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
