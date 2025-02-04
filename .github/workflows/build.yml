@@ -31,12 +31,12 @@ jobs:
       - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
 
-      - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile En Yüksek Sıkıştırma Seviyesiyle Arşivle
+      - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile Arşivle
         run: |
           cd publish
           7z a -mx9 ../ShadeBox.7z ShadeBox.exe
 
-      - name: 🏷️ Versiyon Numarası Al (Türkiye Saat Dilimi ile)
+      - name: 🏷️ Versiyon Numarası Al
         id: version
         shell: pwsh
         run: |
@@ -55,7 +55,7 @@ jobs:
           }
         shell: pwsh
 
-      - name: 🚀 GitHub Releases'a Yükle
+      - name: 🚀 Güncel Sürümü GitHub Releases'a Yükle
         uses: softprops/action-gh-release@v2.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
