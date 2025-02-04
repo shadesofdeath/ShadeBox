@@ -1,4 +1,0 @@
-D:\PROJELER\ShadeBox\ShadeBox\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\ShadeBox.pdb
-D:\PROJELER\ShadeBox\ShadeBox\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\sni.dll
-D:\PROJELER\ShadeBox\ShadeBox\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\SQLite.Interop.dll
-D:\PROJELER\ShadeBox\ShadeBox\bin\Release\net9.0-windows10.0.18362.0\publish\win-x64\ShadeBox.exe
