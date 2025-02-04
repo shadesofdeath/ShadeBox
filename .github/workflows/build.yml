@@ -31,16 +31,18 @@ jobs:
       - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
 
-      - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile Arşivle
+      - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile En Yüksek Sıkıştırma Seviyesiyle Arşivle
         run: |
           cd publish
-          7z a ../ShadeBox.7z ShadeBox.exe
+          7z a -mx9 ../ShadeBox.7z ShadeBox.exe
 
-      - name: 🏷️ Versiyon Numarası Al (Windows PowerShell ile)
+      - name: 🏷️ Versiyon Numarası Al (Türkiye Saat Dilimi ile)
         id: version
         shell: pwsh
         run: |
-          $version = Get-Date -Format "yyyy.MM.dd-HH:mm:ss"
+          $TimeZone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Turkey Standard Time")
+          $TurkeyTime = [System.TimeZoneInfo]::ConvertTime([System.DateTime]::UtcNow, $TimeZone)
+          $version = $TurkeyTime.ToString("yyyy.MM.dd-HH:mm:ss")
           echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8
 
       - name: 🔥 Mevcut "latest" Release'i Sil
