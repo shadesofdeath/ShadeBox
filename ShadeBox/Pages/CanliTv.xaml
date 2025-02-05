@@ -1,0 +1,86 @@
+﻿<ui:Page
+    x:Class="ShadeBox.Pages.CanliTv"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ShadeBox.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+    Title="Canlı TV"
+    d:DesignHeight="500"
+    d:DesignWidth="1000"
+    FontFamily="Segoe UI"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <BitmapImage x:Key="DefaultPoster" UriSource="/Assets/default_poster.png" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Search and Category Selection  -->
+        <Grid Grid.Row="0" Margin="20" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+
+            <ui:AutoSuggestBox
+                x:Name="SearchBox"
+                Width="500"
+                PlaceholderText="Kanal ara..."
+                QuerySubmitted="SearchBox_QuerySubmitted"
+                SuggestionChosen="SearchBox_SuggestionChosen"
+                TextChanged="SearchBox_TextChanged" />
+
+            <ComboBox
+                x:Name="CategoryComboBox"
+                Grid.Column="2"
+                SelectionChanged="CategoryComboBox_SelectionChanged" />
+        </Grid>
+
+        <!--  Channel Cards  -->
+        <ScrollViewer Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <ItemsControl x:Name="ChannelList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Width="200"
+                            Height="150"
+                            Margin="10"
+                            Click="Channel_Click">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Margin="10"
+                                    Source="{Binding Logo, TargetNullValue={StaticResource DefaultPoster}, FallbackValue={StaticResource DefaultPoster}}"
+                                    Stretch="Uniform" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Margin="5"
+                                    Text="{Binding Name}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</ui:Page>

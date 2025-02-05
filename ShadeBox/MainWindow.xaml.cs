@@ -70,6 +70,9 @@ namespace ShadeBox
                     case "AnimePage":
                         ContentFrame.Navigate(new AnimesPage());
                         break;
+                    case "CanliTv":
+                        ContentFrame.Navigate(new CanliTv());
+                        break;
                     case "SettingsPage":
                         ContentFrame.Navigate(new SettingsPage());
                         break;

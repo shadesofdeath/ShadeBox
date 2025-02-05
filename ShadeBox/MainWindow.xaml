@@ -46,6 +46,12 @@
                         <ui:PathIcon Data="{StaticResource AnimeIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Canlı TV" Tag="CanliTv">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource LiveIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
 
             <ui:NavigationView.FooterMenuItems>
