@@ -20,16 +20,6 @@ jobs:
       - name: 🚀 Repository’yi Kopyala
         uses: actions/checkout@v4.2.2
 
-      - name: 📼 MPV indir
-        shell: pwsh
-        run: |
-          mkdir ShadeBox/mpv
-          Invoke-WebRequest -Uri "https://github.com/shinchiro/mpv-winbuild-cmake/releases/download/20250205/mpv-x86_64-v3-20250205-git-38ad1ed.7z" -OutFile "mpv.7z"
-          mkdir temp_mpv
-          7z x mpv.7z -otemp_mpv
-          Get-ChildItem -Path temp_mpv -Recurse -Filter "mpv.exe" | Move-Item -Destination "ShadeBox/mpv/mpv.exe"
-          Remove-Item -Recurse -Force mpv.7z, temp_mpv
-  
       - name: 🛠️ .NET SDK’yı Kur
         uses: actions/setup-dotnet@v4.3.0
         with:
