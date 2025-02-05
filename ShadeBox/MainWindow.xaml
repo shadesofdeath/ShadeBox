@@ -60,6 +60,11 @@
                         <ui:PathIcon Data="{StaticResource SettingsIconData}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Hakkında" Tag="AboutPage">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:PathIcon Data="{StaticResource AboutIconData}" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
             </ui:NavigationView.FooterMenuItems>
 
             <ui:Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" />

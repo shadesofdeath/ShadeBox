@@ -14,6 +14,7 @@
     ui:WindowHelper.FixMaximizedWindow="True"
     ui:WindowHelper.UseModernWindowStyle="True"
     BorderThickness="0"
+    FontFamily="pack://application:,,,/Assets/#Segoe UI"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

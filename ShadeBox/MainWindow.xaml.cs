@@ -76,6 +76,9 @@ namespace ShadeBox
                     case "SettingsPage":
                         ContentFrame.Navigate(new SettingsPage());
                         break;
+                    case "AboutPage":
+                        ContentFrame.Navigate(new AboutPage());
+                        break;
                 }
             }
         }

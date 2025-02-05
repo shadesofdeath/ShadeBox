@@ -9,7 +9,7 @@
     Title="Ayarlar Sayfası"
     d:DesignHeight="500"
     d:DesignWidth="1000"
-    FontFamily="Segoe UI"
+    FontFamily="pack://application:,,,/Assets/#Segoe UI"
     mc:Ignorable="d">
 
     <ui:ScrollViewerEx ForceUseSmoothScroll="True">
