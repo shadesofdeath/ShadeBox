@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Assets\default_poster.png" />
     <None Remove="Assets\popcorn.png" />
+    <None Remove="mpv\mpv.zip" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,7 @@
     <EmbeddedResource Include="Assets\default_poster.png" />
     <Resource Include="Assets\Icons.xaml" />
     <Resource Include="Assets\popcorn.png" />
+    <EmbeddedResource Include="mpv\mpv.zip" />
   </ItemGroup>
 
   <ItemGroup>
