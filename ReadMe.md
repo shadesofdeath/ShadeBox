@@ -15,3 +15,10 @@
 
 * *Copyright (C) 2025 by* [shadesofdeath](https://github.com/shadesofdeath) ❤️️
 * [GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007](https://github.com/shadesofdeath/ShadeBox/blob/main/LICENSE) *Koşullarına göre lisanslanmıştır..*
+
+***
+
+### Linux (Bottles) Bağımlılıklar
+
+- `dotnetcoredesktop9`
+- `d3dcompiler_47`
