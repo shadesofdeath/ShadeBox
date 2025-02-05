@@ -20,6 +20,14 @@ jobs:
       - name: 🚀 Repository’yi Kopyala
         uses: actions/checkout@v4.2.2
 
+      - name: 📼 MPV indir
+        run: |
+          wget https://github.com/shinchiro/mpv-winbuild-cmake/releases/download/20250205/mpv-x86_64-v3-20250205-git-38ad1ed.7z -O mpv.7z
+          mkdir temp_mpv
+          7z x mpv.7z -otemp_mpv
+          find temp_mpv -type f -name "mpv.exe" -exec mv {} ShadeBox/mpv/mpv.exe \;
+          rm -rf mpv.7z temp_mpv
+  
       - name: 🛠️ .NET SDK’yı Kur
         uses: actions/setup-dotnet@v4.3.0
         with:
