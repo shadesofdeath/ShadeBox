@@ -22,3 +22,14 @@
 
 - `dotnetcoredesktop9`
 - `d3dcompiler_47`
+
+#### NotoFonts.reg
+
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Fonts]
+"Noto Sans Regular (TrueType)"="C:\\windows\\Fonts\\NotoSans-Regular.ttf"
+"Noto Sans Bold (TrueType)"="C:\\windows\\Fonts\\NotoSans-Bold.ttf"
+"Noto Sans Italic (TrueType)"="C:\\windows\\Fonts\\NotoSans-Italic.ttf"
+```
