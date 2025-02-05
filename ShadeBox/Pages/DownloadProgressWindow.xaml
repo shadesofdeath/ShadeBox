@@ -10,7 +10,7 @@
     ui:WindowHelper.FixMaximizedWindow="True"
     ui:WindowHelper.UseModernWindowStyle="True"
     BorderThickness="0"
-    FontFamily="pack://application:,,,/Assets/#Segoe UI"
+    FontFamily="pack://application:,,,/Assets/#Noto Sans"
     WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>

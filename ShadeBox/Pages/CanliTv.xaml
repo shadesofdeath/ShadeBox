@@ -9,7 +9,7 @@
     Title="Canlı TV"
     d:DesignHeight="500"
     d:DesignWidth="1000"
-    FontFamily="pack://application:,,,/Assets/#Segoe UI"
+    FontFamily="pack://application:,,,/Assets/#Noto Sans"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -23,7 +23,10 @@
         </Grid.RowDefinitions>
 
         <!--  Search and Category Selection  -->
-        <Grid Grid.Row="0" Margin="20" HorizontalAlignment="Center">
+        <Grid
+            Grid.Row="0"
+            Margin="20"
+            HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
@@ -45,7 +48,11 @@
         </Grid>
 
         <!--  Channel Cards  -->
-        <ScrollViewer Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <ScrollViewer
+            Grid.Row="1"
+            Margin="10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
             <ItemsControl x:Name="ChannelList">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

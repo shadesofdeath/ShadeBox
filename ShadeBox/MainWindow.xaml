@@ -14,6 +14,7 @@
     ui:WindowHelper.SystemBackdropType="Mica"
     ui:WindowHelper.UseModernWindowStyle="True"
     BorderThickness="0"
+    FontFamily="pack://application:,,,/Assets/#Noto Sans"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">
