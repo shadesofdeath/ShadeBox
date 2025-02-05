@@ -12,5 +12,108 @@
     FontFamily="pack://application:,,,/Assets/#Segoe UI"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid Margin="30">
+        <StackPanel>
+            <Border
+                Padding="12"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                CornerRadius="8"
+                Effect="{DynamicResource StandardShadow}">
+
+                <StackPanel>
+                    <WrapPanel>
+                        <ui:PathIcon
+                            Width="22"
+                            Height="20"
+                            Margin="0,0,8,0"
+                            Data="{StaticResource AboutIconData}" />
+                        <TextBlock
+                            FontSize="22"
+                            FontWeight="Medium"
+                            Text="Hakkında" />
+                    </WrapPanel>
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Opacity="0.8"
+                        Text="ShadeBox, kullanıcı dostu arayüzü ve reklamsız deneyimiyle Dizi, Film, Anime ve Canlı TV içeriklerini bir araya getiren kapsamlı bir medya uygulamasıdır." />
+                </StackPanel>
+            </Border>
+
+            <Border
+                Margin="0,6,0,0"
+                Padding="12"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                CornerRadius="8"
+                Effect="{DynamicResource StandardShadow}">
+
+                <StackPanel>
+                    <WrapPanel Margin="0,20,0,0">
+                        <ui:PathIcon
+                            Width="22"
+                            Height="20"
+                            Margin="0,0,8,0"
+                            Data="{StaticResource CoffeeIconData}" />
+                        <TextBlock
+                            FontSize="22"
+                            FontWeight="Medium"
+                            Text="Bağış" />
+                    </WrapPanel>
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Opacity="0.8"
+                        Text="Geliştirici : ShadesOfDeath" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="18"
+                        FontWeight="Medium"
+                        Opacity="0.8"
+                        Text="VakıfBank" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Opacity="0.8"
+                        Text="IBAN : TR47 0001 5001 5800 7309 9858 32" />
+                    <TextBlock
+                        Margin="0,14,0,0"
+                        FontSize="16"
+                        Opacity="0.8"
+                        Text="Destek : Ömer Faruk Sancak" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="18"
+                        FontWeight="Medium"
+                        Opacity="0.8"
+                        Text="EnPara" />
+                    <TextBlock
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Opacity="0.8"
+                        Text="IBAN : TR70 0011 1000 0000 0118 5102 59" />
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="0,6,0,0"
+                Padding="12"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="{DynamicResource ControlFillColorSecondaryBrush}"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                CornerRadius="8"
+                Effect="{DynamicResource StandardShadow}">
+                <TextBlock
+                    FontFamily="Cascadia Code"
+                    FontSize="16"
+                    Opacity="0.8"
+                    Text="Çay olur, çorba olur, fitre olur, zekat olur; kenarda dursun, belki bişi denemek isteyen olur.. 🕊" />
+            </Border>
+        </StackPanel>
+    </Grid>
 </ui:Page>
