@@ -29,7 +29,7 @@ jobs:
           7z x mpv.7z -otemp_mpv
           Get-ChildItem -Path temp_mpv -Recurse -Filter "mpv.exe" | Move-Item -Destination "ShadeBox/mpv/mpv.exe"
           Remove-Item -Recurse -Force mpv.7z, temp_mpv
-  
+
       - name: 🛠️ .NET SDK’yı Kur
         uses: actions/setup-dotnet@v4.3.0
         with:
@@ -40,6 +40,10 @@ jobs:
 
       - name: 🔨 Projeyi Tek Bir EXE Olarak Derle
         run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -o publish
+
+      - name: 🏗️ MPV'yi Çıktı Dizinine Kopyala
+        run: |
+          Copy-Item -Path ShadeBox/mpv/mpv.exe -Destination ./publish/
 
       - name: 🗜️ "ShadeBox.exe" Dosyasını 7z ile Arşivle
         run: |
