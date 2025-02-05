@@ -23,8 +23,16 @@
 - `dotnetcoredesktop9`
 - `d3dcompiler_47`
 
-#### NotoFonts.reg
+#### Şişeye Font Kurulumu
 
+> Fontları Şişeye Kopyalayın
+```bash
+cp /usr/share/fonts/noto/NotoSans-*.ttf ~/.var/app/com.usebottles.bottles/data/bottles/bottles/ShadeBox/drive_c/windows/Fonts/.
+```
+
+> Fontları Regedit e Kaydedin
+> 
+> `NotoFonts.reg`
 ```reg
 Windows Registry Editor Version 5.00
 
