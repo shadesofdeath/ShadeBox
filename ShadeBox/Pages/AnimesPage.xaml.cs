@@ -274,10 +274,17 @@ namespace ShadeBox.Pages
         {
             if (sender is FrameworkElement element && element.Tag is int animesId)
             {
+                var existingWindow = Application.Current.Windows.OfType<AnimesDetailsWindow>().FirstOrDefault();
+
+                // Eğer mevcut pencere varsa kapat
+                existingWindow?.Close();
+
+                // Yeni pencereyi aç
                 var detailsWindow = new AnimesDetailsWindow(animesId);
                 detailsWindow.Show();
             }
         }
+
         private void SearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             if (args.SelectedItem is string selectedSuggestion)
