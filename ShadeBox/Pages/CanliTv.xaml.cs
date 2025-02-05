@@ -15,7 +15,7 @@ namespace ShadeBox.Pages
     public partial class CanliTv : iNKORE.UI.WPF.Modern.Controls.Page
     {
         private List<Channel> allChannels = new List<Channel>();
-        private string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpvnet.exe");
+        private string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpv.exe");
 
         public class Channel
         {

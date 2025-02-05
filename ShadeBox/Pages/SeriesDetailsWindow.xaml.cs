@@ -266,7 +266,7 @@ namespace ShadeBox.Pages
                 videoLink = await MediafireExtractor.GetMediafireDownloadLink(videoLink);
 
                 string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
+                string mpvPath = Path.Combine(exePath, "mpv", "mpv.exe");
                 if (!File.Exists(mpvPath))
                 {
                     MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -250,7 +250,7 @@ namespace ShadeBox.Pages
                 if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 {
                     string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                    mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
+                    mpvPath = Path.Combine(exePath, "mpv", "mpv.exe");
 
                     if (!File.Exists(mpvPath))
                     {
