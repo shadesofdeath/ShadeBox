@@ -23,6 +23,7 @@ jobs:
       - name: 📼 MPV indir
         shell: pwsh
         run: |
+          mkdir ShadeBox/mpv
           Invoke-WebRequest -Uri "https://github.com/shinchiro/mpv-winbuild-cmake/releases/download/20250205/mpv-x86_64-v3-20250205-git-38ad1ed.7z" -OutFile "mpv.7z"
           mkdir temp_mpv
           7z x mpv.7z -otemp_mpv
