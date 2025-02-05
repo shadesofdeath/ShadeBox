@@ -15,7 +15,7 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen">
 
-    <ui:ScrollViewerEx VerticalScrollBarVisibility="Hidden" ForceUseSmoothScroll="True">
+    <ui:ScrollViewerEx ForceUseSmoothScroll="True" VerticalScrollBarVisibility="Hidden">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

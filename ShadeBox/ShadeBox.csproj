@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Assets\Icons.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
 
@@ -32,6 +36,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\default_poster.png" />
+    <Resource Include="Assets\Icons.xaml" />
     <Resource Include="Assets\popcorn.png" />
   </ItemGroup>
 
