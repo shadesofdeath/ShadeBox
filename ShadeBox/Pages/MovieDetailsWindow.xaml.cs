@@ -227,12 +227,43 @@ namespace ShadeBox.Pages
                     return;
                 }
 
-                string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                string mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
-                if (!File.Exists(mpvPath))
+                string mpvPath;
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 {
-                    MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    // Windows için mpv'nin uygulama dizininde olup olmadığını kontrol et
+                    string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
+
+                    if (!File.Exists(mpvPath))
+                    {
+                        MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    // Linux için global mpv'yi kullan
+                    Process whichMpv = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = "which",
+                            Arguments = "mpv",
+                            RedirectStandardOutput = true,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        }
+                    };
+
+                    whichMpv.Start();
+                    mpvPath = whichMpv.StandardOutput.ReadLine();
+                    whichMpv.WaitForExit();
+
+                    if (string.IsNullOrEmpty(mpvPath))
+                    {
+                        MessageBox.Show("Linux sistemde MPV yüklü değil.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                 }
 
                 // Kullanıcı ayarlarına göre MPV argümanlarını oluştur
@@ -242,7 +273,6 @@ namespace ShadeBox.Pages
             "--sub-font-size=18"
         };
 
-                // Existing settings
                 if (Settings.Default.SavePositionOnQuit)
                     arguments.Add("--save-position-on-quit=yes");
 
@@ -296,6 +326,7 @@ namespace ShadeBox.Pages
                 MessageBox.Show($"Video oynatılırken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
 
         private string FormatRuntime(string runtimeInMinutes)
