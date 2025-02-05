@@ -37,9 +37,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\default_poster.png" />
+    <EmbeddedResource Include="mpv\mpv.zip" />
     <Resource Include="Assets\Icons.xaml" />
     <Resource Include="Assets\popcorn.png" />
-    <EmbeddedResource Include="mpv\mpv.zip" />
   </ItemGroup>
 
   <ItemGroup>
