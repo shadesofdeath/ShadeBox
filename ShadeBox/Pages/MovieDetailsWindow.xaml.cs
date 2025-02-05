@@ -214,8 +214,23 @@ namespace ShadeBox.Pages
         {
             try
             {
+                string logDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+                Directory.CreateDirectory(logDir); // Log klasörünü oluştur
+
+                string appLogPath = Path.Combine(logDir, "app_log.txt");
+                string mpvLogPath = Path.Combine(logDir, "mpv_log.txt");
+
+                using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                {
+                    logWriter.WriteLine($"[{DateTime.Now}] - WatchButton_Click çağrıldı.");
+                }
+
                 if (_movieDetails?.videos == null || _movieDetails.videos.Count == 0)
                 {
+                    using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                    {
+                        logWriter.WriteLine($"[{DateTime.Now}] - Video linki bulunamadı.");
+                    }
                     MessageBox.Show("Bu film için izleme linki bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
@@ -223,6 +238,10 @@ namespace ShadeBox.Pages
                 var videoLink = _movieDetails.videos[0].link;
                 if (string.IsNullOrEmpty(videoLink))
                 {
+                    using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                    {
+                        logWriter.WriteLine($"[{DateTime.Now}] - Geçerli bir video linki bulunamadı.");
+                    }
                     MessageBox.Show("Geçerli bir video linki bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
@@ -230,19 +249,21 @@ namespace ShadeBox.Pages
                 string mpvPath;
                 if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 {
-                    // Windows için mpv'nin uygulama dizininde olup olmadığını kontrol et
                     string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                     mpvPath = Path.Combine(exePath, "mpv", "mpvnet.exe");
 
                     if (!File.Exists(mpvPath))
                     {
+                        using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                        {
+                            logWriter.WriteLine($"[{DateTime.Now}] - Windows: MPV bulunamadı.");
+                        }
                         MessageBox.Show("MPV player bulunamadı.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                 }
                 else
                 {
-                    // Linux için global mpv'yi kullan
                     Process whichMpv = new Process
                     {
                         StartInfo = new ProcessStartInfo
@@ -261,6 +282,10 @@ namespace ShadeBox.Pages
 
                     if (string.IsNullOrEmpty(mpvPath))
                     {
+                        using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                        {
+                            logWriter.WriteLine($"[{DateTime.Now}] - Linux: MPV yüklü değil.");
+                        }
                         MessageBox.Show("Linux sistemde MPV yüklü değil.", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
@@ -270,7 +295,8 @@ namespace ShadeBox.Pages
                 List<string> arguments = new List<string>
         {
             $"\"{videoLink}\"",
-            "--sub-font-size=18"
+            "--sub-font-size=18",
+            $"--log-file=\"{mpvLogPath}\"" // MPV log dosyası kaydetme
         };
 
                 if (Settings.Default.SavePositionOnQuit)
@@ -319,10 +345,23 @@ namespace ShadeBox.Pages
                     CreateNoWindow = true
                 };
 
+                using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                {
+                    logWriter.WriteLine($"[{DateTime.Now}] - MPV başlatılıyor: {mpvPath} {processStartInfo.Arguments}");
+                }
+
                 Process.Start(processStartInfo);
             }
             catch (Exception ex)
             {
+                string logDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+                string appLogPath = Path.Combine(logDir, "app_log.txt");
+
+                using (StreamWriter logWriter = new StreamWriter(appLogPath, true))
+                {
+                    logWriter.WriteLine($"[{DateTime.Now}] - Hata oluştu: {ex.Message}");
+                }
+
                 MessageBox.Show($"Video oynatılırken bir hata oluştu: {ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
