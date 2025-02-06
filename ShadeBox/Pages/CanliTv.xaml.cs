@@ -8,6 +8,9 @@ using System.Windows.Controls;
 using iNKORE.UI.WPF.Modern.Controls;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
+using System.Web;
 using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 
 namespace ShadeBox.Pages
@@ -16,6 +19,7 @@ namespace ShadeBox.Pages
     {
         private List<Channel> allChannels = new List<Channel>();
         private string mpvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "mpv", "mpv.exe");
+        private HttpClient httpClient;
 
         public class Channel
         {
@@ -24,26 +28,29 @@ namespace ShadeBox.Pages
             public string Url { get; set; }
             public string Group { get; set; }
             public string Language { get; set; }
+            public List<string> Options { get; set; } = new List<string>();
         }
 
         public CanliTv()
         {
             InitializeComponent();
+            httpClient = new HttpClient();
             LoadChannels();
         }
 
-        private async void LoadChannels()
+        private async Task LoadChannels()
         {
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var m3uContent = await client.GetStringAsync("https://raw.githubusercontent.com/keyiflerolsun/IPTV_YenirMi/main/Kanallar/KekikAkademi.m3u");
-                    ParseM3U(m3uContent);
-                }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                string m3uContent = await httpClient.GetStringAsync("https://raw.githubusercontent.com/keyiflerolsun/IPTV_YenirMi/main/Kanallar/KekikAkademi.m3u");
+                ParseM3U(m3uContent);
             }
             catch (Exception ex)
             {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 MessageBox.Show($"Kanal listesi yüklenirken hata oluştu: {ex.Message}");
             }
         }
@@ -51,6 +58,7 @@ namespace ShadeBox.Pages
         private void ParseM3U(string content)
         {
             var lines = content.Split('\n');
+            List<Channel> channels = new List<Channel>();
             Channel currentChannel = null;
 
             foreach (var line in lines)
@@ -59,7 +67,6 @@ namespace ShadeBox.Pages
                 {
                     currentChannel = new Channel();
 
-                    // Parse channel info
                     var nameMatch = Regex.Match(line, "tvg-name=\"([^\"]+)\"");
                     var logoMatch = Regex.Match(line, "tvg-logo=\"([^\"]+)\"");
                     var groupMatch = Regex.Match(line, "group-title=\"([^\"]+)\"");
@@ -70,20 +77,28 @@ namespace ShadeBox.Pages
                     if (groupMatch.Success) currentChannel.Group = groupMatch.Groups[1].Value;
                     if (langMatch.Success) currentChannel.Language = langMatch.Groups[1].Value;
                 }
+                else if (line.StartsWith("#EXTVLCOPT") && currentChannel != null)
+                {
+                    currentChannel.Options.Add(line.Trim());
+                }
                 else if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("#") && currentChannel != null)
                 {
                     currentChannel.Url = line.Trim();
-                    allChannels.Add(currentChannel);
-                    currentChannel = null;
+                    channels.Add(currentChannel);
+                    currentChannel = null; // Hemen null'a ayarla
                 }
             }
 
-            var categories = allChannels.Select(c => c.Group).Distinct().OrderBy(g => g).ToList();
-            categories.Insert(0, "Tümü");
-            CategoryComboBox.ItemsSource = categories;
-            CategoryComboBox.SelectedIndex = 0;
+            Dispatcher.Invoke(() =>
+            {
+                allChannels = channels;
+                var categories = allChannels.Select(c => c.Group).Distinct().OrderBy(g => g).ToList();
+                categories.Insert(0, "Tümü");
+                CategoryComboBox.ItemsSource = categories;
+                CategoryComboBox.SelectedIndex = 0;
 
-            UpdateChannelDisplay();
+                UpdateChannelDisplay();
+            });
         }
 
         private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -97,7 +112,6 @@ namespace ShadeBox.Pages
                     .ToList();
 
                 sender.ItemsSource = suggestions;
-                UpdateChannelDisplay();
             }
         }
 
@@ -127,6 +141,7 @@ namespace ShadeBox.Pages
                 (string.IsNullOrEmpty(searchText) || c.Name.ToLower().Contains(searchText))
             ).ToList();
 
+            ChannelList.ItemsSource = null;
             ChannelList.ItemsSource = filteredChannels;
         }
 
@@ -136,22 +151,82 @@ namespace ShadeBox.Pages
             {
                 try
                 {
+                    string arguments = $"--force-window=yes";
+                    List<string> headerFields = new List<string>();
+                    foreach (var option in channel.Options)
+                    {
+                        var parts = option.Split('=');
+                        if (parts.Length == 2)
+                        {
+                            var key = parts[0].Replace("#EXTVLCOPT:", "").Trim();
+                            var value = parts[1].Trim();
+
+                            if (key.ToLower().Contains("user-agent"))
+                            {
+                                headerFields.Add($"User-Agent: {value}");
+                            }
+                            else if (key.ToLower().Contains("referrer"))
+                            {
+                                headerFields.Add($"Referer: {value}");
+                            }
+                            else
+                            {
+                                arguments += $" --{key}=\"{value}\"";
+                            }
+                        }
+                    }
+
+                    if (headerFields.Any())
+                    {
+                        arguments += $" --http-header-fields=\"{string.Join(",", headerFields)}\"";
+                    }
+
+                    string encodedUrl = HttpUtility.UrlEncode(channel.Url);
+                    arguments += $" \"{channel.Url}\"";
+
+                    Debug.WriteLine($"mpv arguments: {arguments}");
+
                     var startInfo = new ProcessStartInfo
                     {
                         FileName = mpvPath,
-                        Arguments = $"--force-window=yes \"{channel.Url}\"",
+                        Arguments = arguments,
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         CreateNoWindow = true
                     };
 
-                    Process.Start(startInfo);
+                    Process process = Process.Start(startInfo);
+
+                    // Bellek temizleme
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Kanal açılırken hata oluştu: {ex.Message}");
                 }
             }
+        }
+
+        private void ChannelLogo_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var image = sender as Image;
+            if (image != null)
+            {
+                image.Source = (BitmapImage)FindResource("DefaultPoster");
+            }
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            httpClient?.Dispose();
+            httpClient = null;
+
+            allChannels.Clear();
+            allChannels = null;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
     }
 }

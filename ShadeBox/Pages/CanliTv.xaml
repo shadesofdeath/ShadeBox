@@ -10,10 +10,14 @@
     d:DesignHeight="500"
     d:DesignWidth="1000"
     FontFamily="pack://application:,,,/Assets/#Noto Sans"
+    Unloaded="Page_Unloaded"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <BitmapImage x:Key="DefaultPoster" UriSource="/Assets/default_poster.png" />
+        <BitmapImage x:Key="DefaultPoster" UriSource="https://i.imgur.com/tuzQOFm.png" />
+        <Style TargetType="Image">
+            <Setter Property="Source" Value="{StaticResource DefaultPoster}" />
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -62,9 +66,10 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button
-                            Width="200"
-                            Height="150"
+                            Width="160"
+                            Height="120"
                             Margin="10"
+                            Padding="4"
                             Click="Channel_Click">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -73,8 +78,11 @@
                                 </Grid.RowDefinitions>
 
                                 <Image
-                                    Margin="10"
-                                    Source="{Binding Logo, TargetNullValue={StaticResource DefaultPoster}, FallbackValue={StaticResource DefaultPoster}}"
+                                    x:Name="ChannelLogo"
+                                    Margin="8"
+                                    HorizontalAlignment="Center"
+                                    ImageFailed="ChannelLogo_ImageFailed"
+                                    Source="{Binding Logo}"
                                     Stretch="Uniform" />
 
                                 <TextBlock

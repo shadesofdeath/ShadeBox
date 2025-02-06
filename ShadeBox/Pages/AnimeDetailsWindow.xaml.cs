@@ -320,7 +320,7 @@ namespace ShadeBox.Pages
                 _isFavorited = FavoriteAnimesDb.IsAnimesFavorited(animesId);
                 UpdateFavoriteButtonText();
 
-                string defaultPosterPath = "https://i.imgur.com/47Crg0y.png";
+                string defaultPosterPath = "https://i.imgur.com/tuzQOFm.png";
                 string firstEpisodePosterPath = null;
 
                 // Büyük kapak posteri (ana poster) var mı?

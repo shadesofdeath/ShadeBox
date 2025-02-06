@@ -10,9 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\default_poster.png" />
     <None Remove="Assets\NotoSans-Regular.ttf" />
-    <None Remove="Assets\popcorn.png" />
     <None Remove="mpv\mpv.zip" />
   </ItemGroup>
 
@@ -33,11 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\default_poster.png" />
     <EmbeddedResource Include="mpv\mpv.zip" />
     <Resource Include="Assets\Icons.xaml" />
     <EmbeddedResource Include="Assets\NotoSans-Regular.ttf" />
-    <Resource Include="Assets\popcorn.png" />
   </ItemGroup>
 
   <ItemGroup>
