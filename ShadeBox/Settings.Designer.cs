@@ -178,5 +178,16 @@ namespace ShadeBox {
                 this["BestQuality"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime LastWebViewCheck {
+            get {
+                return ((global::System.DateTime)(this["LastWebViewCheck"]));
+            }
+            set {
+                this["LastWebViewCheck"] = value;
+            }
+        }
     }
 }

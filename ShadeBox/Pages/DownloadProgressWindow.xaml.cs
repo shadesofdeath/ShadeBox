@@ -147,6 +147,7 @@ namespace ShadeBox.Pages
                 ProgressText.Text = $"{progress:P0}";
                 SpeedText.Text = $"{FormatSpeed(speed)}";
                 RemainingTimeText.Text = FormatTime(remainingTime);
+                BytesText.Text = $"{FormatBytes(_downloadedBytes)} / {FormatBytes(_totalBytes)}";
             });
         }
 
@@ -168,6 +169,19 @@ namespace ShadeBox.Pages
             return timeSpan.Hours > 0
                 ? $"{timeSpan.Hours}s {timeSpan.Minutes}d {timeSpan.Seconds}sn"
                 : $"{timeSpan.Minutes}d {timeSpan.Seconds}sn";
+        }
+
+        private string FormatBytes(long bytes)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+            double len = bytes;
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len = len / 1024;
+            }
+            return $"{len:0.##} {sizes[order]}";
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

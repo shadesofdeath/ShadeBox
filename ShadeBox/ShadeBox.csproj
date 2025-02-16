@@ -26,12 +26,12 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
     <PackageReference Include="iNKORE.UI.WPF" Version="1.2.8" />
     <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.10.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3065.39" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="mpv\mpv.zip" />
     <Resource Include="Assets\Icons.xaml" />
     <EmbeddedResource Include="Assets\NotoSans-Regular.ttf" />
   </ItemGroup>
@@ -51,6 +51,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="mpv\d3dcompiler_43.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\doc\manual.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\doc\mpbindings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\fonts\uosc_icons.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\fonts\uosc_textures.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\installer\mpv-icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\installer\mpv-install.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\installer\mpv-uninstall.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\installer\updater.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="mpv\libmpv-2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -58,6 +85,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="mpv\MediaInfo.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\mpv.com">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\mpv.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\mpv.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="mpv\mpvnet.com">
@@ -72,7 +108,133 @@
     <None Update="mpv\mpvnet.pdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="mpv\mpv\fonts.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="mpv\NGettext.Wpf.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\script-opts\uosc.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\bin\ziggy-darwin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\bin\ziggy-linux">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\bin\ziggy-windows.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\char-conv\zh.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\BufferingIndicator.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Button.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Controls.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Curtain.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\CycleButton.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Element.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Elements.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\ManagedButton.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Menu.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Menu.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\PauseIndicator.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Speed.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Timeline.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\TopBar.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Updater.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\Volume.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\elements\WindowBorder.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\de.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\es.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\fr.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\ro.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\ru.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\tr.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\uk.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\intl\zh-hans.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\ass.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\buttons.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\char_conv.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\cursor.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\intl.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\menus.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\std.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\text.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\lib\utils.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\scripts\uosc\main.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mpv\updater.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Settings.settings">
